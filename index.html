@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Casino game - Javascript</title>
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+	<div class="corner-ribbon top-left sticky black shadow"> 
+		<span class="neon">Luxury</span> <span class="flux">Casino</span>  
+	</div>
+	<audio id="spin">
+		<source src="assets/audio/snip.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="lose">
+			<source src="assets/audio/lose.mp3" type="audio/mpeg">
+			</audio>
+			<audio id="win">
+				<source src="assets/audio/win.mp3" type="audio/mpeg">
+				</audio>
+				<main>
+					<div>
+						<img class="pulse" src="assets/images/casino.png" alt="">
+					</div>
+					<div class="card truncate col s12 m6 center-align">
+						<div id="chip" class="chip">
+						</div>
+						<br><br>	
+						<img class="slot slot1" src="assets/images/0.png">
+						<img class="slot slot2" src="assets/images/1.png">
+						<img class="slot slot3" src="assets/images/2.png">
+						<img class="slot slot4" src="assets/images/3.png">
+						<div class="actions">
+							<button id="control" class="but waves-effect waves-light btn blue" onclick="start();">Jouer</button>
+						</div>
+					</div>
+				</main>
+
+
+				<footer class="page-footer">
+					<div class="footer-copyright">
+						<div class="container">
+							© <span id="copyright"></span> Copyright
+							<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+						</div>
+					</div>
+				</footer>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+				<script type="text/javascript" src="assets/js/main.js"></script>	
+				<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+			</body>
+			</html>
