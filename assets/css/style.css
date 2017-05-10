@@ -287,7 +287,7 @@ h2 {
 	text-align: initial;
 	font-weight: bold;
 }
-input[type=text],.bet {
+input[type=number],.bet {
 	width: 25%;
 	float:left;
 }
@@ -312,4 +312,19 @@ button {
 }
 #vol {
 	padding-left: 15px;
+}
+.labels {
+
+	float: left;
+	padding-left: 15px;
+}
+.gitLogo {
+	width: 50px;
+}
+a {
+	color: #fff;
+}
+
+.container {
+	width: 100%;
 }

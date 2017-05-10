@@ -19,112 +19,109 @@
 	<div class="corner-ribbon top-left sticky black shadow"> 
 		<span class="neon">Luxury</span> <span class="flux">Casino</span>  
 	</div>
-	<audio id="spin">
-		<source src="assets/audio/snip.mp3" type="audio/mpeg">
+	<audio id="current">
+		<audio id="spin" src="assets/audio/snip.mp3">
 		</audio>
-		<audio id="lose">
-			<source src="assets/audio/lose.mp3" type="audio/mpeg">
-			</audio>
-			<audio id="win">
-				<source src="assets/audio/win.mp3" type="audio/mpeg">
-				</audio>
-				<main>
-					<div>
-						<img class="logo pulse" src="assets/images/casino.png" alt="">
-					</div>
-					<div class="card">
-						<ul class="tabs">
-							<li class="tab col s3"><a class="active" href="#main">Jeu</a></li>
-							<li class="tab col s3"><a href="#options">Options</a></li>
-							<li class="tab col s3"><a href="#score">Score</a></li>
-						</ul>
+		<audio id="lose" src="assets/audio/lose.mp3">
+		</audio>
+		<audio id="win" src="assets/audio/win.mp3">
+		</audio>
+	</audio>
+	
+	<main>
+		<div>
+			<img class="logo pulse" src="assets/images/casino.png" alt="">
+		</div>
+		<div class="card">
+			<ul class="tabs">
+				<li class="tab col s3"><a class="active" href="#main">Jeu</a></li>
+				<li class="tab col s3"><a href="#options">Options</a></li>
+				<li class="tab col s3"><a href="#score">Score</a></li>
+				<li class="tab col s3"><a href="#classement">Classement</a></li>
+			</ul>
+			<br>
+			<div id="main">
+				<div class="row">
+					<div class="col s6 ">
+						<h2>Crédit
+							<span id="chip" class="chip">
+							</span>
+						</h2> <br>
+						<h2>Meilleur Score
+							<span id="highScore" class="chip" value>0
+							</span>
+						</h2> <br> 
+						<h2>Gains</h2>
 						<br>
-						<div id="main">
-							<div class="row">
+						<table>
+							<tr>
+								<td>
+									<img class="thumb" src="assets/images/1.png">
+									<img class="thumb " src="assets/images/1.png">
+									<img class="thumb " src="assets/images/1.png">
+									<img class="thumb " src="assets/images/1.png">
+								</td>
+								<td> <span id="all"></span> crédits</td>
+							</tr>
+							<tr>
+								<td>
+									<img class="thumb" src="assets/images/1.png">
+									<img class="thumb " src="assets/images/1.png">
+									<img class="thumb " src="assets/images/2.png">
+									<img class="thumb " src="assets/images/2.png">
+								</td>
+								<td> <span id="doublePair"></span> crédits</td>
+							</tr>
+						</table> <br>
 
-								<div class="col s6 ">
-									<h2>Crédit
-										<span id="chip" class="chip">
-										</span>
-									</h2> <br>
-									<h2>Gains</h2>
-									<br>
-									<table>
-										<tr>
-											<td>
-												<img class="thumb" src="assets/images/1.png">
-												<img class="thumb " src="assets/images/1.png">
-												<img class="thumb " src="assets/images/1.png">
-												<img class="thumb " src="assets/images/1.png">
-											</td>
-											<td> <span id="all"></span> crédits</td>
-										</tr>
-										<tr>
-											<td>
-												<img class="thumb" src="assets/images/1.png">
-												<img class="thumb " src="assets/images/1.png">
-												<img class="thumb " src="assets/images/2.png">
-												<img class="thumb " src="assets/images/2.png">
-											</td>
-											<td> <span id="doublePair"></span> crédits</td>
-										</tr>
-										<tr>
-											<td>
-												<img class="thumb" src="assets/images/1.png">
-												<img class="thumb " src="assets/images/1.png">
-												<img class="thumb " src="assets/images/0.png">
-												<img class="thumb " src="assets/images/2.png">
-											</td>
-											<td><span id="onePair"></span> crédit</td>
-										</tr>
-									</table> <br>
-
-									<form action="POST">
-										<h2>Mise</h2>
-										<input type="text" pattern="[0-9]{1}" name="bet" id="bet" value="1">
-									</form> <br><br>
-									
-								</div>
-								<div class="col s6 items">	
-									<img class="slot full slot1" src="assets/images/0.png">
-									<img class="slot full slot2" src="assets/images/1.png">
-									<img class="slot full slot3" src="assets/images/2.png">
-									<img class="slot full slot4" src="assets/images/3.png">
-								</div>
-
-							</div>
-							<button id="control" class="but btn blue">Jouer</button>
-							<button id="save" class="but btn blue" style="display: none">Sauvegarder</button>
-						</div>
-
-						<div id="options">
-							<i class="material-icons dp48" id="change">volume_up</i><input style="width: 75%;" type="range" onchange="setVolume()" id='vol' min=0 max=1      step=0.01 value='1'>
-						</div>
-
-						<div id="score">
-						</div>
+						<form action="POST">
+							<h2>Mise</h2>
+							<input type="number" min="1" pattern="[0-9]{1}" name="bet" id="bet" value="1">
+						</form> <br><br>
 
 					</div>
-
+					<div class="col s6 items">	
+						<img class="slot full slot1" src="assets/images/0.png">
+						<img class="slot full slot2" src="assets/images/1.png">
+						<img class="slot full slot3" src="assets/images/2.png">
+						<img class="slot full slot4" src="assets/images/3.png">
 					</div>
 
+				</div>
+				<button id="control" class="but btn blue">Jouer</button>
+				<button id="save" class="but btn blue" style="display: none" data-target="modal1">Sauvegarder</button>
 
-				</main>
+			</div>
+			<div id="options">
+				<span class="labels">Volume</span> <br>
+				<i class="material-icons dp48" id="change">volume_up</i><input style="width: 75%;" type="range" onchange="setVolume(); " id='vol' min=0 max=1      step=0.01 value='1'>
+				<br>
+			</div>
 
-				<footer class="page-footer">
-					<div class="footer-copyright">
-						<div class="container">
-							© <span id="copyright"></span> Copyright
-							<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-						</div>
-					</div>
-				</footer>
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-				<script type="text/javascript" src="assets/js/main.js"></script>	
-				<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-				<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
-				<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-			</body>
-			</html>
+			<div id="score">
+			</div>
+			<div id="classement">
+			</div>
+
+		</div>
+
+
+	</main>
+
+	<footer class="page-footer">
+		<div class="footer-copyright">
+			<div class="container">
+				© <span id="copyright"></span> <a href="">Laurent P.</a> <a href="">Abdessalam B.</a>  Tous droits réservés
+				<a class="grey-text text-lighten-4 right" href="https://github.com/Abdessalam98/Javascript_slot_machine">Voir sur <img class="gitLogo" src="assets/images/github.png" alt=""></a>
+			</div>
+		</div>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/main.js"></script>	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+</body>
+</html>
