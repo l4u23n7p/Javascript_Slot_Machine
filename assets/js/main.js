@@ -1,16 +1,47 @@
 	slotitem = new Array('0','1','2','3');
 	var credit =20;
-
+	var bet = $('input[name="bet"]');
+	var ctrl = $("#control");
+	allScore = sessionStorage;
+	bestScore = localStorage;
+	var num = 0;
 
 	$("#chip").html(credit);
 
-	$("#control").click( function () {
-        if ($("#control").html() == "Jouer") {
-            start();
+	ctrl.click( function () {
+        if (ctrl.html() == "Jouer") {
+        	if ($("#chip").html() >= bet.val()) {
+                start();
+            }
+            else {
+                Materialize.toast('Crédit Insuffisant !', 5000, 'red');
+                ctrl.addClass("disabled");
+			}
         } else {
             restart();
         }
 
+    });
+
+	bet.keyup(function () {
+        const regex = /\d/g;
+        if (regex.exec(bet.val()) != null) {
+            load();
+            if( $("#chip").html() >= bet.val()) {
+                ctrl.removeClass("disabled");
+            }
+        }
+    });
+
+    $("#btnScore").click(function () {
+    	$("#score").html("");
+		for(key in allScore) {
+            $("#score").append("<tr><td>"+(JSON.parse(allScore.getItem(key)).coup+1)+"</td><td>"+(JSON.parse(allScore.getItem(key)).score)+"</td></tr>");
+		}
+    });
+
+    $("#ok").click(function () {
+		bestScore.setItem(name.val(), JSON.stringify({name: name.val(),score: highScore.val()}))
     });
 
 
@@ -24,9 +55,9 @@
 				return false;
 
 			});
-			$("#control").html("Jouer");
+			ctrl.html("Jouer");
 			run();
-            credit--;
+            credit -= bet.val();
             pauseLose();
 			playSpin();
 		}
@@ -36,11 +67,19 @@
 
         if (credit == -1) {
 
-            $("#control").html("Recommencer");
-            Materialize.toast('Nombre d\'essai épuisé', 5000, 'blue');
+            ctrl.html("Recommencer");
+            $('#save').show();
+            Materialize.toast('Crédit épuisé', 5000, 'blue');
         }
-		$("#control").addClass(" disabled ");
+		ctrl.addClass(" disabled ");
 	}
+	
+	function save(score) {
+		if (allScore.getItem(num) != null) {
+			num++
+		}
+		allScore.setItem(num, JSON.stringify({coup: num, score: score}));
+    }
 
 	function run() {
 		randomSlot(".slot1");
@@ -102,10 +141,9 @@
     }
 
     function load() {
-		$("#all").html(calcCredit($('input[name="bet"]').val(), 5));
-		$("#doublePair").html(calcCredit($('input[name="bet"]').val(), 3));
-		$("#onePair").html(calcCredit($('input[name="bet"]').val(), 1));
-
+		$("#all").html(calcCredit(bet.val(), 5));
+		$("#doublePair").html(calcCredit(bet.val(), 3));
+		$("#onePair").html(calcCredit(bet.val(), 1));
     }
 
 	function checkMatch()	{
@@ -116,47 +154,44 @@
 			Materialize.toast('Bravo vous avez gagné', 5000, 'green');
 			pauseSpin();
 			playWin();
-			winner(calcCredit($('input[name="bet"]').val(), 5));
+			winner(calcCredit(bet.val(), 5));
+			save(calcCredit(bet.val(), 5));
 			$("#chip").html(credit);
 		}
 		else if ((cards.trefle == 2 && cards.carreau == 2) || (cards.trefle == 2 && cards.coeur == 2) || (cards.trefle == 2 && cards.pique == 2) || (cards.carreau == 2 && cards.coeur == 2) || (cards.carreau == 2 && cards.pique == 2) || (cards.coeur ==  2 && cards.pique == 2)) {
             Materialize.toast('Bravo vous avez gagné', 5000, 'green');
             pauseSpin();
             playWin();
-            winner(calcCredit($('input[name="bet"]').val(),3));
+            winner(calcCredit(bet.val(),3));
+            save(calcCredit(bet.val(),3));
             $("#chip").html(credit);
         }
-		else if (cards.trefle == 2 || cards.carreau == 2 || cards.pique == 2 || cards.coeur == 2) {
-            Materialize.toast('Bravo vous avez gagné', 5000, 'green');
-            pauseSpin();
-            playWin();
-            winner(calcCredit($('input[name="bet"]').val(),1));
-            $("#chip").html(credit);
-        }
-
 		else {
 			Materialize.toast('Dommage. Réessayez', 5000, 'red');
+			save(0);
 			pauseSpin();
 			playLose();
 			if (credit == 0) {
 
-				$("#control").html("Recommencer");
-				Materialize.toast('Nombre d\'essai épuisé', 5000, 'blue');
+				ctrl.html("Recommencer");
+				$("#save").show();
+				Materialize.toast('Crédit épuisé', 5000, 'blue');
 			}
 		}
-		$("#control").removeClass(" disabled ");
+		ctrl.removeClass(" disabled ");
 	}
 
 	function restart() {
-		$("#control").removeClass(" disabled ");
+		ctrl.removeClass(" disabled ");
 		Materialize.toast('Le jeu recommence', 5000, 'blue');
-		$("#control").html("Jouer");
+		ctrl.html("Jouer");
 		credit = 20;
         $("#chip").html(credit);
+        $("#save").hide();
 	}
 
     function winner(value) {
-        $("#control").removeClass(" disabled ");
+        ctrl.removeClass(" disabled ");
         Materialize.toast('Vous gagnez '+value+' crédits', 5000, 'blue');
         credit += value;
     }
@@ -190,9 +225,27 @@
 	function pauseWin() { 
 		win.pause(); 
 		win.currentTime = 0;
-	} 
+	}
 
-	
+    function setVolume() {
+        var media0 = document.getElementsByTagName("spin");
+        var media1 = document.getElementsByTagName("win");
+        var media2 = document.getElementsByTagName("lose");
+        media0.volume = document.getElementById("vol").value;
+        media1.volume = document.getElementById("vol").value;
+        media2.volume = document.getElementById("vol").value;
+        if (media0.volume<1) {
+            $("#change").html("volume_down")
+        }
+        if (media0.volume==0) {
+            $("#change").html("volume_off")
+        }
+        if (media0.volume==1) {
+            $("#change").html("volume_up")
+        }
+    }
+
+
     var year = (new Date()).getFullYear();
     $("#copyright").html(year);
 	
