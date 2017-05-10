@@ -5,6 +5,8 @@
 	allScore = sessionStorage;
 	bestScore = localStorage;
 	var num = 0;
+	var highScore = 0;
+	var name = $('input[name="name"]');
 
 	$("#chip").html(credit);
 
@@ -41,7 +43,7 @@
     });
 
     $("#ok").click(function () {
-		bestScore.setItem(name.val(), JSON.stringify({name: name.val(),score: highScore.val()}))
+		bestScore.setItem(name.val(), JSON.stringify({name: name.val(),score: highScore}))
     });
 
 
@@ -59,6 +61,7 @@
 			run();
             credit -= bet.val();
             pauseLose();
+            pauseWin()
 			playSpin();
 		}
 
@@ -73,6 +76,13 @@
         }
 		ctrl.addClass(" disabled ");
 	}
+
+	function isBestScore() {
+		if (credit > highScore ) {
+            $("#highScore").html(credit);
+            highScore = credit;
+		}
+    }
 	
 	function save(score) {
 		if (allScore.getItem(num) != null) {
@@ -91,6 +101,7 @@
 			setTimeout("run();",100);
 		} else {
 			checkMatch();
+			isBestScore();
 		}
 
 	}
@@ -228,9 +239,9 @@
 	}
 
     function setVolume() {
-        var media0 = document.getElementsByTagName("spin");
-        var media1 = document.getElementsByTagName("win");
-        var media2 = document.getElementsByTagName("lose");
+        var media0 = document.getElementById("spin");
+        var media1 = document.getElementById("win");
+        var media2 = document.getElementById("lose");
         media0.volume = document.getElementById("vol").value;
         media1.volume = document.getElementById("vol").value;
         media2.volume = document.getElementById("vol").value;
