@@ -30,24 +30,24 @@
 				</audio>
 				<main>
 					<div>
-						<img class="pulse" src="assets/images/casino.png" alt="">
+						<img class="logo pulse" src="assets/images/casino.png" alt="">
 					</div>
 					<div class="card">
-						
-						<h2  style="float: right; font-size: 16px; text-align: initial;">Crédit
-							<span id="chip" class="chip"></span>
-						</h2>
 						<ul class="tabs">
 							<li class="tab col s3"><a class="active" href="#main">Jeu</a></li>
 							<li class="tab col s3"><a href="#options">Options</a></li>
-							<li class="tab col s3"><a href="#">Score</a></li>
+							<li class="tab col s3"><a href="#score">Score</a></li>
 						</ul>
-						<br><br>
+						<br>
 						<div id="main">
 							<div class="row">
 
 								<div class="col s6 ">
-									<h2 style="font-size: 16px; text-align: initial;">Gains</h2>
+									<h2>Crédit
+										<span id="chip" class="chip">
+										</span>
+									</h2> <br>
+									<h2>Gains</h2>
 									<br>
 									<table>
 										<tr>
@@ -80,9 +80,10 @@
 									</table> <br>
 
 									<form action="POST">
-										<h2 style="font-size: 16px; text-align: initial;">Mise</h2>
-										<input type="text" name="bet" id="bet" value="1">
-									</form>
+										<h2>Mise</h2>
+										<input type="text" pattern="[0-9]{1}" name="bet" id="bet" value="1">
+									</form> <br><br>
+									
 								</div>
 								<div class="col s6 items">	
 									<img class="slot full slot1" src="assets/images/0.png">
@@ -93,11 +94,17 @@
 
 							</div>
 							<button id="control" class="but btn blue">Jouer</button>
+							<button id="save" class="but btn blue" style="display: none">Sauvegarder</button>
 						</div>
 
 						<div id="options">
-							<i class="material-icons dp48" style="width: 25%;">volume_up</i><input style="width: 75%;" type="range" onchange="setVolume()" id='vol' min=0 max=1      step=0.01 value='1'>
+							<i class="material-icons dp48" id="change">volume_up</i><input style="width: 75%;" type="range" onchange="setVolume()" id='vol' min=0 max=1      step=0.01 value='1'>
 						</div>
+
+						<div id="score">
+						</div>
+
+					</div>
 
 					</div>
 
