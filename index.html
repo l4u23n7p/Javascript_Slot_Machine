@@ -36,7 +36,7 @@
 			<ul class="tabs">
 				<li class="tab col s3"><a class="active" href="#main">Jeu</a></li>
 				<li class="tab col s3"><a href="#options">Options</a></li>
-				<li class="tab col s3"><a href="#score">Score</a></li>
+				<li class="tab col s3"><a href="#score" id="btnScore">Score</a></li>
 				<li class="tab col s3"><a href="#classement">Classement</a></li>
 			</ul>
 			<br>
@@ -90,6 +90,16 @@
 				</div>
 				<button id="control" class="but btn blue">Jouer</button>
 				<button id="save" class="but btn blue" style="display: none" data-target="modal1">Sauvegarder</button>
+	<div id="svHighScore" class="modal">
+					<div class="modal-content">
+						<h4>Sauvegarder</h4>
+						<p>test</p>
+						<input type="text" name="name" id="name">
+					</div>
+					<div class="modal-footer">
+						<button id="ok" >Enregistrer</button>
+					</div>
+				</div>
 
 			</div>
 			<div id="options">
@@ -98,7 +108,9 @@
 				<br>
 			</div>
 
-			<div id="score">
+			<div>
+<table id="score">
+</table>
 			</div>
 			<div id="classement">
 			</div>
