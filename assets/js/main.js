@@ -234,7 +234,7 @@ function checkMatch() {
 
             ctrl.html("Recommencer");
             tri()
-            if ((highScore > JSON.parse(tabClassement[tabClassement.length - 1]).score) || tabClassement.length < 5) {
+            if ((tabClassement.length < 5) || (highScore > JSON.parse(tabClassement[tabClassement.length - 1]).score)) {
                 $("#save").show();
             }
             Materialize.toast('Crédit épuisé', 5000, 'blue');
