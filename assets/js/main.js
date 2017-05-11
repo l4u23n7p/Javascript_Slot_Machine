@@ -31,7 +31,7 @@ bet.keyup(function () {
     const regex = /\d/g;
     if (regex.exec(bet.val()) != null) {
         load();
-        if ($("#chip").html() >= bet.val()) {
+        if (parseInt($("#chip").html()) >= parseInt(bet.val())) {
             ctrl.removeClass("disabled");
         }
     }
