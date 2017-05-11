@@ -3,6 +3,7 @@ var credit = 20;
 var bet = $('input[name="bet"]');
 var ctrl = $("#control");
 allScore = sessionStorage;
+allScore.clear();
 bestScore = localStorage;
 var tabScore = new Array(allScore.length);
 var tabClassement = new Array(bestScore.length);
