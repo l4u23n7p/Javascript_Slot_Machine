@@ -12,5 +12,5 @@
 - Alexis DUCERF
 ## Récuperer le projet fourni
 
-Téléchargez le fichier [projet.zip](https://github.com/Abdessalam98/Javascript_slot_machine/projet.zip) ou cloner via la commande `git clone` 
+Téléchargez le [dossier du projet] (https://github.com/Abdessalam98/Javascript_slot_machine/archive/master.zip) ou cloner via la commande `git clone` 
 
