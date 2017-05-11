@@ -286,7 +286,9 @@ td, th {
 }
 
 
-
+.modal-content {
+	text-align:initial;
+}
 
 
 @media (max-width: 768px) {
