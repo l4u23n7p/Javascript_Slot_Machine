@@ -5,6 +5,7 @@ var ctrl = $("#control");
 allScore = sessionStorage;
 bestScore = localStorage;
 var tabScore = new Array(allScore.length);
+var tabClassement = new Array(bestScore.length);
 var num = 0;
 var highScore = 0;
 
@@ -50,18 +51,24 @@ $("#btnScore").click(function () {
     }
 });
 
-
 $("#btnClassement").click(function () {
     $('#value2').html('');
-    for (key in bestScore) {
-        $("#value2").append("<tr><td>" + JSON.parse(bestScore.getItem(key)).name+ "</td><td>" + JSON.parse(bestScore.getItem(key)).score + "</td></tr>");
+    tri();
+    for (key in tabClassement) {
+        $("#value2").append("<tr><td>" + (parseInt(key) + 1) + "</td><td>" + JSON.parse(tabClassement[key]).name + "</td><td>" + JSON.parse(tabClassement[key]).score + "</td></tr>");
 
     }
 });
 
 $("#ok").click(function () {
-    bestScore.setItem( $('input[name="name"]').val(), JSON.stringify({name:  $('input[name="name"]').val(), score: highScore}))
+    if (bestScore.length == 5) {
+        bestScore.setItem(4, JSON.stringify({name: $('input[name="name"]').val(), score: highScore}))
+    }
+    else {
+        bestScore.setItem(bestScore.length, JSON.stringify({name: $('input[name="name"]').val(), score: highScore}))
+    }
     $("#saveScore").modal("close");
+    $("#save").addClass('disabled');
 });
 
 function start() {
@@ -99,6 +106,29 @@ function isBestScore() {
         $("#highScore").html(credit);
         highScore = credit;
     }
+}
+
+function tri() {
+    for (key in bestScore) {
+        tabClassement[key] = bestScore[key];
+    }
+    console.log(tabClassement);
+    for (var ind01 = 0; ind01 < tabClassement.length - 1; ind01++) {
+        var ind02 = ind01 + 1;
+        for (ind02; ind02 < tabClassement.length; ind02++) {
+            while (JSON.parse(tabClassement[ind01]).score > JSON.parse(tabClassement[ind02]).score) {
+                temp = tabClassement[ind01];
+                tabClassement[ind01] = tabClassement[ind02];
+                tabClassement[ind02] = temp;
+            }
+        }
+    }
+    tabClassement.reverse();
+    bestScore.clear();
+    for (val in tabClassement) {
+        bestScore.setItem(val, tabClassement[val]);
+    }
+    console.log(tabClassement);
 }
 
 function save(score) {
@@ -202,7 +232,10 @@ function checkMatch() {
         if (credit == 0) {
 
             ctrl.html("Recommencer");
-            $("#save").show();
+            tri()
+            if ((highScore > JSON.parse(tabClassement[tabClassement.length - 1]).score) || tabClassement.length < 5) {
+                $("#save").show();
+            }
             Materialize.toast('Crédit épuisé', 5000, 'blue');
         }
     }
@@ -211,9 +244,14 @@ function checkMatch() {
 
 function restart() {
     ctrl.removeClass(" disabled ");
+    allScore.clear();
+    tabScore.length = 0;
+    $("#save").removeClass('disabled')
     Materialize.toast('Le jeu recommence', 5000, 'blue');
     ctrl.html("Jouer");
     credit = 20;
+    highScore = 0;
+    $("#highScore").html(highScore);
     $("#chip").html(credit);
     $("#save").hide();
 }
@@ -253,24 +291,6 @@ function playWin() {
 function pauseWin() {
     win.pause();
     win.currentTime = 0;
-}
-
-function setVolume() {
-    var media0 = document.getElementById("spin");
-    var media1 = document.getElementById("win");
-    var media2 = document.getElementById("lose");
-    media0.volume = document.getElementById("vol").value;
-    media1.volume = document.getElementById("vol").value;
-    media2.volume = document.getElementById("vol").value;
-    if (media0.volume < 1) {
-        $("#change").html("volume_down")
-    }
-    if (media0.volume == 0) {
-        $("#change").html("volume_off")
-    }
-    if (media0.volume == 1) {
-        $("#change").html("volume_up")
-    }
 }
 
 var year = (new Date()).getFullYear();
