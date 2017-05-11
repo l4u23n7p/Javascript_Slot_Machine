@@ -1,6 +1,6 @@
 # Projet Javascript
 
-![Image](Image/--.png)
+![Image](assets/images/casino.png)
 
 ## Machine à sous
 
@@ -12,5 +12,5 @@
 - Alexis DUCERF
 ## Récuperer le projet fourni
 
-Téléchargez le fichier [projet.zip](https://github.com/) ou cloner via la commande `git clone` 
+Téléchargez le fichier [projet.zip](https://github.com/Abdessalam98/Javascript_slot_machine/projet.zip) ou cloner via la commande `git clone` 
 
