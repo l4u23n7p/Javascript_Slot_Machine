@@ -294,6 +294,24 @@ function pauseWin() {
     win.currentTime = 0;
 }
 
+function setVolume() {
+    var media0 = document.getElementById("spin");
+    var media1 = document.getElementById("win");
+    var media2 = document.getElementById("lose");
+    media0.volume = document.getElementById("vol").value;
+    media1.volume = document.getElementById("vol").value;
+    media2.volume = document.getElementById("vol").value;
+    if (media0.volume < 1) {
+        $("#change").html("volume_down");
+    }
+    if (media0.volume == 0) {
+        $("#change").html("volume_off");
+    }
+    if (media0.volume == 1) {
+        $("#change").html("volume_up");
+    }
+}
+
 var year = (new Date()).getFullYear();
 $("#copyright").html(year);
 	
