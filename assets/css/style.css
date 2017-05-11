@@ -278,7 +278,7 @@ a {
 .scores {
 	text-align: center;
 }
-td {
+td, th {
 	text-align: center;
 }
 .footer-copyright {
