@@ -6,7 +6,7 @@
 
 **Membres de l'équipe:**
 - [Laurent Panek](https://github.com/Laurent-PANEK)
-- [Abdessalam Benharira](https://github.com/Abdessalam)
+- [Abdessalam Benharira](https://github.com/Abdessalam98)
 
 ## Encadré par:
 - [Alexis DUCERF](https://github.com/NideXTC)
