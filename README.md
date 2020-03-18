@@ -5,8 +5,8 @@
 ## Machine à sous
 
 **Membres de l'équipe:**
-- [Laurent Panek](https://github.com/Laurent-PANEK)
-- [Abdessalam Benharira](https://github.com/Abdessalam98)
+- [Laurent Panek](https://github.com/l4u23n7p)
+- [Abdessalam Benharira](https://github.com/abdessalamb98)
 
 ## Encadré par:
 - [Alexis DUCERF](https://github.com/NideXTC)
